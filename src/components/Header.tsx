@@ -32,7 +32,7 @@ export function Header({ tasksCounter }: HeaderProps) {
           style={styles.tasksCounterBold}
         >
           {/* {tasksCounter} {`${tasksCounter > 1 ? 'tarefas' : 'tarefa'}`} */}
-          {tasksCounter} {tasksCounter > 1 ? 'tarefas' : 'tarefa'}
+          {tasksCounter} {tasksCounter == 1 ? 'tarefa' : 'tarefas'}
         </Text>
       </View>
     </View>
