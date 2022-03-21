@@ -6,13 +6,13 @@ import { Home } from '../../pages/Home';
 describe('Home', () => {
   it('should be able to render new added tasks', () => {
     const { getByPlaceholderText, getByText } = render(<Home />);
-    const inputElement = getByPlaceholderText('Adicionar novo todo...');
+    const inputElement = getByPlaceholderText('Adicione uma tarefa');
 
     expect(getByText('0 tarefas'));
 
     fireEvent.changeText(inputElement, 'Primeira tarefa');
     fireEvent(inputElement, 'submitEditing');
-    
+
     expect(getByText('Primeira tarefa'));
     expect(getByText('1 tarefa'));
 
@@ -26,14 +26,14 @@ describe('Home', () => {
 
   it('should be able to render tasks as done and undone', () => {
     const { getByPlaceholderText, getByText, getByTestId } = render(<Home />);
-    const inputElement = getByPlaceholderText('Adicionar novo todo...');
+    const inputElement = getByPlaceholderText('Adicione uma tarefa');
 
     fireEvent.changeText(inputElement, 'Primeira tarefa');
     fireEvent(inputElement, 'submitEditing');
 
     const buttonElement = getByTestId('button-0');
     const markerElement = getByTestId('marker-0');
-    
+
     const taskElement = getByText('Primeira tarefa');
 
     expect(buttonElement).toHaveStyle({
@@ -70,11 +70,11 @@ describe('Home', () => {
 
   it('should be able to remove tasks after the trash icon was pressed', async () => {
     const { getByPlaceholderText, getByText, getByTestId, queryByText } = render(<Home />);
-    const inputElement = getByPlaceholderText('Adicionar novo todo...');
+    const inputElement = getByPlaceholderText('Adicione uma tarefa');
 
     fireEvent.changeText(inputElement, 'Primeira tarefa');
     fireEvent(inputElement, 'submitEditing');
-    
+
     fireEvent.changeText(inputElement, 'Segunda tarefa');
     fireEvent(inputElement, 'submitEditing');
 
