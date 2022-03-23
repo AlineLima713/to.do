@@ -7,16 +7,14 @@ interface TodoInputProps {
 }
 
 export function TodoInput({ addTask }: TodoInputProps) {
-  const [task, setTask] = useState('');
+  const [taskName, setTaskName] = useState('');
 
   function handleAddNewTask() {
-    if (task.trim() === '') {
-      return;
-    }
-
-    addTask(task.trim());
+    if (!taskName.trim()) return;
     
-    setTask('');
+    addTask(taskName.trim());
+    
+    setTaskName('');
   }
 
   return (
@@ -27,8 +25,8 @@ export function TodoInput({ addTask }: TodoInputProps) {
         placeholderTextColor="#dad8d8"
         returnKeyType="send"
         selectionColor="#666666"
-        value={task}
-        onChangeText={setTask}
+        value={taskName}
+        onChangeText={setTaskName}
         onSubmitEditing={handleAddNewTask}
       />
       <TouchableOpacity
