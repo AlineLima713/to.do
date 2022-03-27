@@ -11,9 +11,9 @@ export function TodoInput({ addTask }: TodoInputProps) {
 
   function handleAddNewTask() {
     if (!taskName.trim()) return;
-    
+
     addTask(taskName.trim());
-    
+
     setTaskName('');
   }
 
