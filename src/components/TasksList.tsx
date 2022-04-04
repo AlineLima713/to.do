@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import { FlatList, Image, TouchableOpacity, View, StyleSheet, Alert, TextInput } from 'react-native';
+import React from 'react';
+import { FlatList, TouchableOpacity, View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { ItemWrapper } from './ItemWrapper';
 
 import { TaskItem } from './TaskItem';
 
-import trashIcon from '../assets/icons/trash/trash.png'
-
-import penIcon from '../assets/icons/pen/pen.png'
 
 export interface Task {
   id: number;
@@ -26,7 +23,7 @@ interface TasksListProps {
 
 }
 
-export function TasksList({ tasks, toggleTaskDone, removeTask, enableEditTask, editTask }: TasksListProps) {
+export function TasksList({ tasks, toggleTaskDone, enableEditTask, editTask, removeTask }: TasksListProps) {
 
   return (
     <FlatList
@@ -40,8 +37,8 @@ export function TasksList({ tasks, toggleTaskDone, removeTask, enableEditTask, e
       renderItem={({ item, index }) => {
         return (
           <ItemWrapper index={index}>
-            <View style={{ flexDirection: 'row' }}>
-
+            <View style={{ flexDirection: 'row', alignItems: "center" }}>
+              
               <TouchableOpacity
                 testID={`button-${index}`}
                 style={styles.taskButton}
@@ -65,37 +62,9 @@ export function TasksList({ tasks, toggleTaskDone, removeTask, enableEditTask, e
                 enableEditTask={enableEditTask}
                 task={item}
                 editTask={editTask}
+                removeTask={removeTask}
               />
 
-              <TouchableOpacity
-                style={styles.taskButton}
-                onPress={() => enableEditTask(item.id)}
-              >
-                <Image source={penIcon} />
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                testID={`trash-${index}`}
-                style={{ padding: 24 }}
-                onPress={() => {
-                  Alert.alert(
-                    "Remover item",
-                    "Tem certeza que você deseja remover esse item?",
-                    [
-                      {
-                        text: "NÃO",
-                        onPress: () => { return; },
-                        style: "cancel"
-                      },
-
-                      { text: "SIM", onPress: () => removeTask(item.id) }
-                    ]
-                  );
-
-                }}
-              >
-                <Image source={trashIcon} />
-              </TouchableOpacity>
             </View>
           </ItemWrapper >
         )
