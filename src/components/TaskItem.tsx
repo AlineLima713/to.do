@@ -49,7 +49,7 @@ export function TaskItem({ editTask, task, enableEditTask, removeTask }: TaskIte
       />
 
       {
-        task.enable === false && (
+        !task.enable && (
           <TouchableOpacity
             style={styles.taskButton}
             onPress={() => {
@@ -67,7 +67,7 @@ export function TaskItem({ editTask, task, enableEditTask, removeTask }: TaskIte
       }
 
       {
-        task.enable === true && (
+        task.enable && (
           <TouchableOpacity
             style={styles.taskButton}
             onPress={() => {
@@ -86,7 +86,7 @@ export function TaskItem({ editTask, task, enableEditTask, removeTask }: TaskIte
 
       <TouchableOpacity
         style={{ padding: 24 }}
-        disabled={task.enable === true}
+        disabled={task.enable}
         onPress={() => {
           Alert.alert(
             "Remover item",
@@ -107,7 +107,7 @@ export function TaskItem({ editTask, task, enableEditTask, removeTask }: TaskIte
 
         }}
       >
-        <Image source={trashIcon} style={{ opacity: task.enable === true ? 0.2 : 1 }} />
+        <Image source={trashIcon} style={{ opacity: task.enable ? 0.2 : 1 }} />
       </TouchableOpacity>
     </>
   )
